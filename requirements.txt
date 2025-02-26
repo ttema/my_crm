@@ -1,0 +1,7 @@
+fastapi[all]         # Основной фреймворк
+uvicorn              # ASGI-сервер для запуска FastAPI
+sqlalchemy           # ORM для работы с базой данных
+pydantic             # Валидация данных
+alembic              # Управление миграциями базы данных
+passlib[bcrypt]      # Хеширование паролей
+python-jose[cryptography]  # JWT-аутентификация

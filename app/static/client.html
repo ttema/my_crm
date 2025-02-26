@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о клиенте</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Данные клиента</h1>
+
+    <div id="client-info">
+        <h2>Основная информация</h2>
+        <p><strong>Название:</strong> <span id="full_name"></span></p>
+        <p><strong>Сокращенное название:</strong> <span id="short_name"></span></p>
+        <p><strong>Организационно-правовая форма:</strong> <span id="legal_form"></span></p>
+        <p><strong>ИНН:</strong> <span id="inn"></span></p>
+        <p><strong>ОГРН:</strong> <span id="ogrn"></span></p>
+        <p><strong>Дата регистрации:</strong> <span id="registration_date"></span></p>
+
+        <h2>Контактные данные</h2>
+        <p><strong>Юридический адрес:</strong> <span id="legal_address"></span></p>
+        <p><strong>Фактический адрес:</strong> <span id="actual_address"></span></p>
+        <p><strong>Телефон:</strong> <span id="phone"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Веб-сайт:</strong> <span id="website"></span></p>
+
+        <h2>Сведения об управлении</h2>
+        <p><strong>Генеральный директор:</strong> <span id="director_name"></span></p>
+        <p><strong>Основание представительства:</strong> <span id="representation_basis"></span></p>
+
+        <h2>Финансовая информация</h2>
+        <p><strong>Уставный капитал:</strong> <span id="authorized_capital"></span> руб.</p>
+        <p><strong>Основной вид деятельности:</strong> <span id="main_activity"></span></p>
+        <p><strong>Ожидаемый оборот:</strong> <span id="expected_turnover"></span> руб.</p>
+        <p><strong>Количество сотрудников:</strong> <span id="employee_count"></span></p>
+
+        <h2>Бенефициары и учредители</h2>
+        <p><strong>Владелец:</strong> <span id="owner_name"></span></p>
+        <p><strong>Доля владения:</strong> <span id="owner_share"></span>%</p>
+        <p><strong>Дата рождения владельца:</strong> <span id="owner_birth_date"></span></p>
+        <p><strong>Учредитель-юрлицо:</strong> <span id="owner_company_name"></span></p>
+        <p><strong>ИНН учредителя:</strong> <span id="owner_inn"></span></p>
+
+        <h2>Статус клиента</h2>
+        <p><strong>Статус:</strong> <span id="status"></span></p>
+        <p><strong>Верифицирован:</strong> <span id="is_verified"></span></p>
+    </div>
+
+    <h2>Результат проверки контрагента</h2>
+    <div id="verification-info">
+        <p><strong>Риск-скор:</strong> <span id="risk_score">-</span></p>
+        <p><strong>Черный список:</strong> <span id="blacklist_status">-</span></p>
+        <p><strong>Финансовый риск:</strong> <span id="financial_risk">-</span></p>
+        <p><strong>Налоговая задолженность:</strong> <span id="tax_debt">-</span></p>
+        <p><strong>Санкции:</strong> <span id="sanctions">-</span></p>
+    </div>
+
+    <button onclick="approveClient()">Одобрить</button>
+    <button onclick="resetClientStatus()">Вернуть в обработку</button>
+    <button onclick="goBack()">Назад</button>
+
+    <script src="client.js"></script>
+</body>
+</html>
