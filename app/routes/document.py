@@ -47,3 +47,23 @@ def get_client_documents(client_id: int, db: Session = Depends(get_db)):
     if not documents:
         return []
     return [{"id": doc.id, "filename": doc.filename, "file_path": doc.file_path} for doc in documents]
+
+@router.put("/{document_id}/approve")
+def approve_document(document_id: int, db: Session = Depends(get_db)):
+    document = db.query(Document).filter(Document.id == document_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Документ не найден")
+
+    document.first_approve = True
+    db.commit()
+    return {"message": "Документ заверен", "document_id": document_id}
+
+@router.put("/{document_id}/reject")
+def reject_document(document_id: int, db: Session = Depends(get_db)):
+    document = db.query(Document).filter(Document.id == document_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Документ не найден")
+
+    document.first_approve = False
+    db.commit()
+    return {"message": "Документ отклонён", "document_id": document_id}

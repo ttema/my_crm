@@ -113,27 +113,33 @@ function loadDocuments() {
     fetch(`/documents/clients/${clientId}/documents`)
         .then(response => response.json())
         .then(documents => {
-            console.log("Документы клиента:", documents); // Проверяем в консоли
+            console.log("Документы клиента:", documents);
 
             const tableBody = document.getElementById("documents-body");
             tableBody.innerHTML = "";
 
             if (documents.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="3">Документы не загружены</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="5">Документы не загружены</td></tr>`;
                 return;
             }
 
             documents.forEach(doc => {
+                const status = doc.first_approve ? "Заверен" : "Ожидает заверения";
+
                 const row = document.createElement("tr");
+                row.setAttribute("data-doc-id", doc.id); // Атрибут для поиска строки
 
                 row.innerHTML = `
                     <td>${doc.id}</td>
                     <td>${doc.filename}</td>
+                    <td class="doc-status">${status}</td>
                     <td>
                         <button onclick="openDocument('${doc.file_path}')">Открыть</button>
                         <a href="/${doc.file_path}" download="${doc.filename}">
                             <button>Скачать</button>
                         </a>
+                        <button onclick="approveDocument(${doc.id})" style="background-color: #28a745;">Заверить</button>
+                        <button onclick="rejectDocument(${doc.id})" style="background-color: #dc3545;">Отклонить</button>
                     </td>
                 `;
 
@@ -145,5 +151,33 @@ function loadDocuments() {
 
 function openDocument(filePath) {
     window.open(`/${filePath}`, '_blank');
+}
+
+function approveDocument(documentId) {
+    fetch(`/documents/${documentId}/approve`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+
+        // Обновляем статус без перезагрузки всей страницы
+        const row = document.querySelector(`tr[data-doc-id="${documentId}"]`);
+        if (row) {
+            row.querySelector(".doc-status").textContent = "Заверен"; // Меняем текст в колонке "Статус"
+        }
+    })
+    .catch(error => console.error("Ошибка заверения документа:", error));
+}
+
+function rejectDocument(documentId) {
+    fetch(`/documents/${documentId}/reject`, { method: "PUT" })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        loadDocuments(); // Обновляем список документов
+    })
+    .catch(error => console.error("Ошибка отклонения документа:", error));
 }
 
