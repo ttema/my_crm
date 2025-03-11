@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     loadClient();
-    loadVerification();
+    loadDocuments();
+    loadVerification()
 });
 
 function getClientId() {
@@ -104,5 +105,45 @@ function resetClientStatus() {
         console.error("Ошибка при возврате статуса клиента:", error);
         alert("Не удалось изменить статус клиента.");
     });
+}
+
+function loadDocuments() {
+    const clientId = getClientId();
+
+    fetch(`/documents/clients/${clientId}/documents`)
+        .then(response => response.json())
+        .then(documents => {
+            console.log("Документы клиента:", documents); // Проверяем в консоли
+
+            const tableBody = document.getElementById("documents-body");
+            tableBody.innerHTML = "";
+
+            if (documents.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="3">Документы не загружены</td></tr>`;
+                return;
+            }
+
+            documents.forEach(doc => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${doc.id}</td>
+                    <td>${doc.filename}</td>
+                    <td>
+                        <button onclick="openDocument('${doc.file_path}')">Открыть</button>
+                        <a href="/${doc.file_path}" download="${doc.filename}">
+                            <button>Скачать</button>
+                        </a>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error("Ошибка загрузки документов:", error));
+}
+
+function openDocument(filePath) {
+    window.open(`/${filePath}`, '_blank');
 }
 

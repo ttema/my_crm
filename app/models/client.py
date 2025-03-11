@@ -43,3 +43,6 @@ class Client(Base):
     # Статусы проверки
     status = Column(String, default="pending")
     is_verified = Column(Boolean, default=False)
+
+    # Связь с документами
+    documents = relationship("Document", back_populates="client")
