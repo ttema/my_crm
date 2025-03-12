@@ -134,12 +134,18 @@ function loadDocuments() {
                     <td>${doc.filename}</td>
                     <td class="doc-status">${status}</td>
                     <td>
-                        <button onclick="openDocument('${doc.file_path}')">Открыть</button>
-                        <a href="/${doc.file_path}" download="${doc.filename}">
-                            <button>Скачать</button>
-                        </a>
-                        <button onclick="approveDocument(${doc.id})" style="background-color: #28a745;">Заверить</button>
-                        <button onclick="rejectDocument(${doc.id})" style="background-color: #dc3545;">Отклонить</button>
+                        <div class="btn-group">
+                            <div class="btn-row">
+                                <button class="btn btn-primary" onclick="openDocument('${doc.file_path}')">Открыть</button>
+                                <a href="/${doc.file_path}" download="${doc.filename}">
+                                    <button class="btn btn-primary">Скачать</button>
+                                </a>
+                            </div>
+                            <div class="btn-row">
+                                <button class="btn btn-success" onclick="approveDocument(${doc.id})">Заверить</button>
+                                <button class="btn btn-danger" onclick="rejectDocument(${doc.id})">Отклонить</button>
+                            </div>
+                        </div>
                     </td>
                 `;
 
@@ -179,5 +185,23 @@ function rejectDocument(documentId) {
         loadDocuments(); // Обновляем список документов
     })
     .catch(error => console.error("Ошибка отклонения документа:", error));
+}
+
+function sendMessage() {
+    const input = document.getElementById("chat-input");
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    // Добавляем сообщение в чат
+    const chatBox = document.getElementById("chat-box");
+    const messageElement = document.createElement("div");
+    messageElement.textContent = message;
+    messageElement.classList.add("chat-message");
+    chatBox.appendChild(messageElement);
+
+    // Очищаем поле ввода
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight; // Прокручиваем вниз
 }
 

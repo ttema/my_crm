@@ -4,33 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список клиентов</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1>Список клиентов</h1>
 
-    <table id="clients-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название</th>
-                <th>ИНН</th>
-                <th>ОГРН</th>
-                <th>Статус</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody id="clients-body">
-            <!-- Данные загружаются через JS -->
-        </tbody>
-    </table>
-    <div id="logout-container">
-        <button onclick="logout()">Выйти</button>
+      <!-- Верхняя панель (Кнопка "Выйти" слева, Уведомления справа) -->
+    <div class="top-bar">
+        <button class="logout-btn" onclick="logout()">Выйти</button>
+        <div class="notifications-container">
+            <button class="notification-icon" onclick="toggleNotifications()">🔔</button>
+            <div id="notification-box" class="hidden">
+                <p>Уведомлений нет</p>
+            </div>
+        </div>
     </div>
 
+    <!-- Заголовок по центру -->
+    <h1 class="page-title">Список клиентов</h1>
+
+    <!-- Таблица клиентов -->
+    <div class="clients-container">
+        <table id="clients-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>ИНН</th>
+                    <th>ОГРН</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="clients-body">
+                <!-- Данные загружаются через JS -->
+            </tbody>
+        </table>
+    </div>
 
     <script src="script.js"></script>
-    <script src="logout.js"></script>
-
 </body>
 </html>

@@ -1,0 +1,122 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    background-color: #007bff;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start; /* Размещаем элементы слева */
+    align-items: center;
+    gap: 15px; /* Отступ между кнопкой и уведомлениями */
+}
+
+/* Кнопка "Выйти" */
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* Заголовок (по центру) */
+.page-title {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Контейнер для таблицы (отступы слева и справа) */
+.clients-container {
+    width: 80%;
+    margin: 10px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Кнопки "Подробнее" */
+.details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Контейнер уведомлений */
+.notifications-container {
+    position: relative;
+}
+
+/* Иконка уведомлений */
+.notification-icon {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Окно уведомлений */
+#notification-box {
+    position: absolute;
+    left: 0; /* Привязка к левому краю */
+    top: 30px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 200px;
+    display: none;
+}
+
+/* Показываем окно */
+#notification-box.visible {
+    display: block;
+}
+
+/* Показываем окно */
+#notification-box.visible {
+    display: block;
+}
+
+/* Скрываем окно */
+.hidden {
+    display: none;
+}

@@ -1,14 +1,66 @@
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 0;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-    text-align: center;
+/* Верхняя панель */
+.top-bar {
+    background-color: #007bff;
+    padding: 15px;
+    text-align: left;
 }
 
+.top-bar button {
+    background-color: white;
+    color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.top-bar button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Основной контейнер */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Левая колонка (информация о клиенте) */
+.client-info {
+    width: 40%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Блоки информации */
+.info-block {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+}
+
+/* Правая колонка (таблица документов) */
+.documents {
+    width: 55%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Таблица */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -18,7 +70,7 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -27,38 +79,147 @@ th {
     color: white;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
-
+/* Кнопки в таблице */
 button {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 7px 12px;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 button:hover {
     background-color: #218838;
 }
 
-#logout-container {
-    position: absolute !important;
-    top: 10px !important;
-    right: 10px !important;
+/* Кнопка отклонения */
+button.reject {
+    background-color: #dc3545;
 }
 
-#logout-container button {
-    background-color: #d9534f;
+button.reject:hover {
+    background-color: #c82333;
+}
+
+/* Основной контейнер */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Левая панель (Чат + Информация о клиенте) */
+.left-panel {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Чат */
+/* Контейнер, который уравнивает ширину чата и информации о клиенте */
+.client-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Чат и Информация о клиенте одинакового размера */
+.chat, .client-info {
+    width: 100%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#chat-box {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+}
+
+#chat-input {
+    width: calc(100% - 90px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-#logout-container button:hover {
-    background-color: #c9302c;
+button:hover {
+    background-color: #0056b3;
 }
+
+/* Правая колонка (Таблица документов) */
+.documents {
+    width: 55%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Группировка кнопок */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Отступ между рядами кнопок */
+}
+
+/* Ряд кнопок */
+.btn-row {
+    display: flex;
+    gap: 5px; /* Отступ между кнопками */
+}
+
+/* Кнопки */
+.btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Стили для разных кнопок */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+

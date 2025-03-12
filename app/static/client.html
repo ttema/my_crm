@@ -7,72 +7,94 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Данные клиента</h1>
-
-    <div id="client-info">
-        <h2>Основная информация</h2>
-        <p><strong>Название:</strong> <span id="full_name"></span></p>
-        <p><strong>Сокращенное название:</strong> <span id="short_name"></span></p>
-        <p><strong>Организационно-правовая форма:</strong> <span id="legal_form"></span></p>
-        <p><strong>ИНН:</strong> <span id="inn"></span></p>
-        <p><strong>ОГРН:</strong> <span id="ogrn"></span></p>
-        <p><strong>Дата регистрации:</strong> <span id="registration_date"></span></p>
-
-        <h2>Контактные данные</h2>
-        <p><strong>Юридический адрес:</strong> <span id="legal_address"></span></p>
-        <p><strong>Фактический адрес:</strong> <span id="actual_address"></span></p>
-        <p><strong>Телефон:</strong> <span id="phone"></span></p>
-        <p><strong>Email:</strong> <span id="email"></span></p>
-        <p><strong>Веб-сайт:</strong> <span id="website"></span></p>
-
-        <h2>Сведения об управлении</h2>
-        <p><strong>Генеральный директор:</strong> <span id="director_name"></span></p>
-        <p><strong>Основание представительства:</strong> <span id="representation_basis"></span></p>
-
-        <h2>Финансовая информация</h2>
-        <p><strong>Уставный капитал:</strong> <span id="authorized_capital"></span> руб.</p>
-        <p><strong>Основной вид деятельности:</strong> <span id="main_activity"></span></p>
-        <p><strong>Ожидаемый оборот:</strong> <span id="expected_turnover"></span> руб.</p>
-        <p><strong>Количество сотрудников:</strong> <span id="employee_count"></span></p>
-
-        <h2>Бенефициары и учредители</h2>
-        <p><strong>Владелец:</strong> <span id="owner_name"></span></p>
-        <p><strong>Доля владения:</strong> <span id="owner_share"></span>%</p>
-        <p><strong>Дата рождения владельца:</strong> <span id="owner_birth_date"></span></p>
-        <p><strong>Учредитель-юрлицо:</strong> <span id="owner_company_name"></span></p>
-        <p><strong>ИНН учредителя:</strong> <span id="owner_inn"></span></p>
-
-        <h2>Статус клиента</h2>
-        <p><strong>Статус:</strong> <span id="status"></span></p>
-        <p><strong>Верифицирован:</strong> <span id="is_verified"></span></p>
+    <!-- Верхняя панель с кнопкой "Назад" -->
+    <div class="top-bar">
+        <button onclick="goBack()">← Назад</button>
     </div>
 
-    <h2>Результат проверки контрагента</h2>
-    <div id="verification-info">
-        <p><strong>Риск-скор:</strong> <span id="risk_score">-</span></p>
-        <p><strong>Черный список:</strong> <span id="blacklist_status">-</span></p>
-        <p><strong>Финансовый риск:</strong> <span id="financial_risk">-</span></p>
-        <p><strong>Налоговая задолженность:</strong> <span id="tax_debt">-</span></p>
-        <p><strong>Санкции:</strong> <span id="sanctions">-</span></p>
-    </div>
-    <h2>Документы клиента</h2>
-    <table id="documents-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название файла</th>
-                <th>Статус</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody id="documents-body">
-        <!-- Данные загружаются через JS -->
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="left-panel">
+            <div class="client-section">
+                <!-- Чат -->
+                <div class="chat">
+                    <h2>Чат с клиентом</h2>
+                    <div id="chat-box"></div>
+                    <input type="text" id="chat-input" placeholder="Введите сообщение..." />
+                    <button onclick="sendMessage()">Отправить</button>
+                </div>
 
-    <button onclick="approveClient()">Одобрить</button>
-    <button onclick="resetClientStatus()">Вернуть в обработку</button>
-    <button onclick="goBack()">Назад</button>
+                <!-- Левая колонка: информация о клиенте -->
+                <div class="client-info">
+                    <h2>Информация о клиенте</h2>
+                    <div class="info-block"><strong>Название:</strong> <span id="full_name"></span></div>
+                    <div class="info-block"><strong>Сокращённое название:</strong> <span id="short_name"></span></div>
+                    <div class="info-block"><strong>Организационно-правовая форма:</strong> <span id="legal_form"></span></div>
+                    <div class="info-block"><strong>ИНН:</strong> <span id="inn"></span></div>
+                    <div class="info-block"><strong>ОГРН:</strong> <span id="ogrn"></span></div>
+                    <div class="info-block"><strong>Дата регистрации:</strong> <span id="registration_date"></span></div>
+
+                    <h2>Контактные данные</h2>
+                    <div class="info-block"><strong>Юридический адрес:</strong> <span id="legal_address"></span></div>
+                    <div class="info-block"><strong>Фактический адрес:</strong> <span id="actual_address"></span></div>
+                    <div class="info-block"><strong>Телефон:</strong> <span id="phone"></span></div>
+                    <div class="info-block"><strong>Email:</strong> <span id="email"></span></div>
+                    <div class="info-block"><strong>Веб-сайт:</strong> <span id="website"></span></div>
+
+                    <h2>Сведения об управлении</h2>
+                    <div class="info-block"><strong>Генеральный директор:</strong> <span id="director_name"></span></div>
+                    <div class="info-block"><strong>Основание представительства:</strong> <span id="representation_basis"></span></div>
+
+                    <h2>Финансовая информация</h2>
+                    <div class="info-block"><strong>Уставный капитал:</strong> <span id="authorized_capital"></span> руб.</div>
+                    <div class="info-block"><strong>Основной вид деятельности:</strong> <span id="main_activity"></span></div>
+                    <div class="info-block"><strong>Ожидаемый оборот:</strong> <span id="expected_turnover"></span> руб.</div>
+                    <div class="info-block"><strong>Количество сотрудников:</strong> <span id="employee_count"></span></div>
+
+                    <h2>Бенефициары и учредители</h2>
+                    <div class="info-block"><strong>Владелец:</strong> <span id="owner_name"></span></div>
+                    <div class="info-block"><strong>Доля владения:</strong> <span id="owner_share"></span>%</div>
+                    <div class="info-block"><strong>Дата рождения владельца:</strong> <span id="owner_birth_date"></span></div>
+                    <div class="info-block"><strong>Учредитель-юрлицо:</strong> <span id="owner_company_name"></span></div>
+                    <div class="info-block"><strong>ИНН учредителя:</strong> <span id="owner_inn"></span></div>
+
+                    <h2>Статус клиента</h2>
+                    <div class="info-block"><strong>Статус:</strong> <span id="status"></span></div>
+                    <div class="info-block"><strong>Верифицирован:</strong> <span id="is_verified"></span></div>
+
+                    <!-- Кнопки изменения статуса -->
+                    <div class="status-buttons">
+                        <button onclick="approveClient()" class="approve-btn">Предодобрить</button>
+                        <button onclick="resetClientStatus()" class="reset-btn">Вернуть в обработку</button>
+                    </div>
+
+                    <h2>Результат проверки контрагента</h2>
+                    <div class="info-block"><strong>Риск-скор:</strong> <span id="risk_score"></span></div>
+                    <div class="info-block"><strong>Черный список:</strong> <span id="blacklist_status"></span></div>
+                    <div class="info-block"><strong>Финансовый риск:</strong> <span id="financial_risk"></span></div>
+                    <div class="info-block"><strong>Налоговая задолженность:</strong> <span id="tax_debt"></span></div>
+                    <div class="info-block"><strong>Санкции:</strong> <span id="sanctions"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка: документы -->
+        <div class="documents">
+            <h2>Документы клиента</h2>
+            <table id="documents-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название файла</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="documents-body">
+                    <!-- Данные загружаются через JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script src="client.js"></script>
 </body>
