@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form, HTTPException
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from app.db.database import engine, Base
 from app.routes import auth, client, document
@@ -17,7 +18,22 @@ app.include_router(document.router, prefix="/documents", tags=["Documents"])
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
+# Фиктивные учетные данные
+FAKE_USERS = {
+    "admin": "password123",
+    "user": "1234"
+}
+
 
 @app.get("/")
-def read_root():
-    return {"message": "CRM API is running!"}
+def home():
+    return RedirectResponse(url="/login.html")
+
+
+@app.post("/login")
+def login(username: str = Form(...), password: str = Form(...)):
+    # Проверяем логин/пароль
+    if username in FAKE_USERS and FAKE_USERS[username] == password:
+        return RedirectResponse(url="/index.html", status_code=303)
+    else:
+        raise HTTPException(status_code=401, detail="Неверный логин или пароль")
